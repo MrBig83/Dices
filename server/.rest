@@ -1,0 +1,19 @@
+GET http://localhost:3000/api/orders
+###
+
+GET http://localhost:3000/api/users
+###
+POST http://localhost:3000/api/save
+Content-Type: application/json
+
+{
+    "username": "thirduser", 
+    "userEmail": "thirduseruser@email.com", 
+    "id": ""
+}
+
+###
+
+GET http://localhost:3000/api/products
+###
+

@@ -1,0 +1,31 @@
+.header {
+    height: 4rem;
+    background-color: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+.header-right {
+    height: inherit;
+    
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-right button {
+    border: 1px solid rgb(125, 159, 172);
+    background-color: rgb(173, 216, 230);
+    /* box-shadow: 0px 0px 10px rgb(217, 255, 0); */
+    /* On hover på ovan box-shadow */
+    margin-left: 10px ;
+    height: 2rem;
+    width: 6rem;
+    border-radius: 10px;
+}
+.header-right button:hover {
+    transition: 0.6s;
+    box-shadow: 0px 0px 10px rgb(217, 255, 0);
+}
