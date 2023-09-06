@@ -18,6 +18,27 @@ const getAllUsers = async (req, res) => {
       });
 
   };
+  const verifyUnique = async (req, res, next) => {
+    console.log("Kontrollera om unik");
+    fs.readFile("../server/data/users.json", (err, data) => {
+      if (err) throw err;
+
+    const nyData = JSON.parse(data)
+
+    if(nyData.length > 0){
+      nyData.forEach(user => {
+        if(req.body.email != user.email){
+          return next();
+        } else {
+          console.log("ABORT MISSION!!");
+          res.status(403).json("Mission aborted!")
+          // return;
+        }
+      });   // Gör kontrollen på front end istället för backend. 
+    }
+    next();
+    });
+  }
   
 const saveToStripe = async (req) => {
   const customer = await stripe.customers.create({
@@ -53,13 +74,13 @@ const saveUser = async (req, res) => {
         data = JSON.parse(data)
 
         
-          data.forEach(single => {
-            if(req.body.email != single.email){
+          // data.forEach(single => {
+          //   if(req.body.email != single.email){
 
-              console.log("Detta funkar ju fint... men sen då? ");
+          //     console.log("Detta funkar ju fint... men sen då? ");
               
-            }
-          });
+          //   }
+          // });
           
           data.push(customerObj)
           // if(req.body.email == data.email){ //Måste man mappa ut datan?
@@ -80,6 +101,7 @@ const saveUser = async (req, res) => {
 };
 
   module.exports = {
+    verifyUnique,
     getAllUsers,
     saveUser
   };

@@ -7,8 +7,8 @@ POST http://localhost:3000/api/save
 Content-Type: application/json
 
 {
-    "name": "MegaUser", 
-    "email": "mega@email.com",
+    "name": "MegaUser2", 
+    "email": "mega2@email.com",
     "description": "Detta är en beskrivning i .rest-filen"
 }
 
