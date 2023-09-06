@@ -1,3 +1,5 @@
+const { initStripe } = require("../Controllers/stripe.controller")
+const stripe = initStripe();
 const fs = require("fs");
 
 
@@ -17,33 +19,64 @@ const getAllUsers = async (req, res) => {
 
   };
   
+const saveToStripe = async (req) => {
+  const customer = await stripe.customers.create({
+    name: req.body.name, 
+    email: req.body.email,
+    description: req.body.description
+  })
+  return customer
+}
+
 const saveUser = async (req, res) => {
-    
+
+  const customer = await saveToStripe(req)
+
+  // console.log(customer);
+  
+    // const customer = await stripe.customers.create({
+    //   name: req.body.name, 
+    //   email: req.body.email,
+    //   description: req.body.description
+    // })
+
+   let customerObj = new Object()
+   customerObj.id = customer.id;
+   customerObj.name = customer.name;
+   customerObj.email = customer.email;
+   customerObj.description = customer.description;
+  //  console.log(customerObj);
+  
+
     fs.readFile("../server/data/users.json", (err, data) => {
         if (err) throw err;
         data = JSON.parse(data)
+
         
+          data.forEach(single => {
+            if(req.body.email != single.email){
+
+              console.log("Detta funkar ju fint... men sen då? ");
+              
+            }
+          });
+          
+          data.push(customerObj)
+          // if(req.body.email == data.email){ //Måste man mappa ut datan?
+          //   console.log("Nej du");
+          // }
         
-        data.push(req.body) //Hindra två användare med samma mailadress? 
+
+        
         
         fs.writeFile("../server/data/users.json", JSON.stringify(data, null, 2), err => {
             if(err) {
                 console.error(err);
             }
-            //res.status(200).json(data)
             res.status(200).json("New user added")
         })
       });
-    // const users = JSON.parse(oldUsers)
-    // users.push(req.body)
-    // console.log(users);
 
-    // fs.writeFileSync("../server/data/users.json", JSON.stringify(users, null, 2), err => {
-    //     if(err) {
-    //         console.error(err);
-    //     }
-    //     res.status(200).json(user);
-    // })
 };
 
   module.exports = {

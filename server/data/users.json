@@ -1,18 +1,20 @@
 [
   {
-    "username": "Martin",
-    "userEmail": "mail@mail.com"
+    "id": "cus_OaWeaOdJAerWv4",
+    "name": "MegaUser",
+    "email": "mega@email.com",
+    "description": "Detta är en beskrivning i .rest-filen"
   },
   {
-    "username": "seconduser",
-    "userEmail": "seconduser@email.com"
+    "id": "cus_OaWeLCZsrCCC0T",
+    "name": "MegaUser2",
+    "email": "mega2@email.com",
+    "description": "Detta är en beskrivning i .rest-filen"
   },
   {
-    "username": "thirduser",
-    "userEmail": "thirduseruser@email.com"
-  },
-  {
-    "username": "thirduser",
-    "userEmail": "thirduseruser@email.com"
+    "id": "cus_OaWfJ6nTCKxXTl",
+    "name": "MegaUser2",
+    "email": "mega2@email.com",
+    "description": "Detta är en beskrivning i .rest-filen"
   }
 ]
