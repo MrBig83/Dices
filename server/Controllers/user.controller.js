@@ -13,7 +13,7 @@ const getAllUsers = async (req, res) => {
   
 const saveToStripe = async (req) => {
   const customer = await stripe.customers.create({
-    // name: req.body.name, 
+    name: req.body.name, 
     email: req.body.userEmail,
     description: req.body.description
   })
@@ -52,11 +52,8 @@ const loginUser = async (req, res) => {
     users.forEach(user => {
       if(req.body.userEmail == user.email){
         bcrypt.compare(req.body.userPassword, user.password, function(err, result) {
-          console.log(result);
-          // result == true
           if(result == true){
             req.session = user
-            console.log(req.session);
             res.status(200).json(req.session)
           }
         });

@@ -1,8 +1,8 @@
 import { createContext, useState, useEffect } from 'react';
 
 const defaultValues = {
-    username: "",
-    setUsername: () => {},
+    userEmail: "",
+    setuserEmail: () => {},
     password: "",
     setPassword: () => {}, 
     userList: "", 
@@ -17,16 +17,16 @@ let usersInList = []
 // eslint-disable-next-line react/prop-types
 export function UserProvider({ children }) {
   const [loggedIn, setLoggedIn] = useState("");
-  const [username, setUsername] = useState("")
+  const [userEmail, setuserEmail] = useState("")
   const [password, setPassword] = useState("")
   const [userList, setUserList] = useState([])
   
   // eslint-disable-next-line react-refresh/only-export-components
-  const loginUser = async (username, password) => {
+  const loginUser = async (userEmail, password) => {
     const loginResponse = await fetch(`/api/users`, {
       method: "POST", 
       body: JSON.stringify({
-        userEmail: username, 
+        userEmail: userEmail, 
         userPassword: password
       }), 
       headers: {
@@ -37,11 +37,12 @@ export function UserProvider({ children }) {
     setLoggedIn(user.id); 
   };
   
-  const saveUser = async (username, password) => { //TODO: Byt username till email
+  const saveUser = async (userEmail, password) => { //TODO: Byt userEmail till email
     await fetch(`http://localhost:3000/api/save`, {
       method: "POST", 
       body: JSON.stringify({
-        userEmail: username, 
+        name: "webUser", //TODO ha med namn vid skapande av användare
+        userEmail: userEmail, 
         userPassword: password, 
         description: "User created at webpage"
       }), 
@@ -54,7 +55,7 @@ export function UserProvider({ children }) {
   // TODO "Skapa användare" skall öppna popuppen. 
  
   useEffect(() => {
-    const fetchUsernames = async () => {
+    const fetchuserEmails = async () => {
       const response = await fetch(`http://localhost:3000/api/users`);
       const data = await response.json();
       data.forEach(user => {
@@ -64,8 +65,8 @@ export function UserProvider({ children }) {
       setUserList(usersInList);
       usersInList = []      
     };
-    fetchUsernames();
-  },[username]);
+    fetchuserEmails();
+  },[userEmail]);
 
   // Function to handle logout
   const logout = async () => {
@@ -73,7 +74,7 @@ export function UserProvider({ children }) {
       method: "POST", 
     })
     setLoggedIn("") //TODO - Ta bort dessa tre!
-    setUsername("")
+    setuserEmail("")
     setPassword("")
   };
 
@@ -83,8 +84,8 @@ export function UserProvider({ children }) {
                 loggedIn,
                 loginUser,
                 logout,
-                username, 
-                setUsername, 
+                userEmail, 
+                setuserEmail, 
                 password, 
                 setPassword, 
                 userList, 

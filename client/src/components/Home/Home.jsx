@@ -4,11 +4,11 @@ import ProductList from "../ProductList/ProductList"
 
 
 const Home = () => {
-  const { username, setUsername, password, setPassword, userList, saveUser, loginUser, loggedIn, logout } = useContext(UserContext)
+  const { userEmail, setuserEmail, password, setPassword, userList, saveUser, loginUser, loggedIn, logout } = useContext(UserContext)
 
   async function login() {
-    if(document.querySelector(".userName").value){
-      const index = userList.indexOf(document.querySelector(".userName").value)
+    if(document.querySelector(".userEmail").value){
+      const index = userList.indexOf(document.querySelector(".userEmail").value)
       if(index < 0){
         console.log("Användaren finns inte");
         renderCreateUser()
@@ -18,8 +18,8 @@ const Home = () => {
       //TODO: Visa felmeddelande: Fyll i användarnamn
     }
     if(document.querySelector(".password").value){
-      loginUser(username, password) 
-      document.querySelector(".userName").value = "";
+      loginUser(userEmail, password) 
+      document.querySelector(".userEmail").value = "";
       document.querySelector(".password").value = "";
     } else {
       console.log("Lösenord saknas"); //TODO skapa en riktigt varning
@@ -27,8 +27,8 @@ const Home = () => {
   }
 
   function createUser() {   
-    if(username && password){
-      saveUser(username, password)
+    if(userEmail && password){
+      saveUser(userEmail, password)
     } else {
       console.log("Fyll i användarnamn och lösenord");
     }
@@ -45,16 +45,16 @@ const Home = () => {
   return (
     <div>
         <p>Användare:</p>
-        <input onChange={(e) => setUsername(e.target.value)} className="userName" type="text" placeholder="Email" />
+        <input onChange={(e) => setuserEmail(e.target.value)} className="userEmail" type="text" placeholder="Email" />
         <input onChange={(e) => setPassword(e.target.value)} className="password" type="text" placeholder="Lösenord" />
-        <button onClick={() => login(username, password)}>Logga in</button>
+        <button onClick={() => login(userEmail, password)}>Logga in</button>
         <button onClick={() => logout()}>Logga ut</button>
-        <button onClick={() => createUser(username, password)}>Skapa användare</button>
+        <button onClick={() => createUser(userEmail, password)}>Skapa användare</button>
         <p>Här vill jag visa mina produkter</p>
         <ProductList />
 
-        <p>Nedan visas username om man loggar in. TODO : Det skall tas bort sen... </p>
-        <h1>{username}</h1>
+        <p>Nedan visas userEmail om man loggar in. TODO : Det skall tas bort sen... </p>
+        <h1>{userEmail}</h1>
         <h1>{password}</h1>
         <h1>{loggedIn}</h1>
         

@@ -1,23 +1,3 @@
 [
-  {
-    "id": "cus_ObCpZjDEPY1x7M",
-    "name": "Mega1",
-    "email": "mega1@email.com",
-    "password": "$2b$10$tOUePDEFrOdDInr5L6lEc.JVsL/azHPZye83bdQxj8NIMECtlCdY.",
-    "description": "User created at webpage"
-  },
-  {
-    "id": "cus_ObDIvWtFTqaG5e",
-    "name": "Mega22",
-    "email": "mega22@email.com",
-    "password": "$2b$10$xpdMXEf24IDhw6nwG8vZUuf1/ueQBRJTHxgg2pZiWoLUYMitR4mm6",
-    "description": "User created at webpage"
-  },
-  {
-    "id": "cus_ObEyWar2RJIMg3",
-    "name": "A",
-    "email": "a@e.com",
-    "password": "$2b$10$H/s9QnW8CB1dXbqR6DKO..6mz1Xj/AhpjA5LDpK0Y8kiFrJkiTyii",
-    "description": "User created at webpage"
-  }
+
 ]

@@ -10,7 +10,7 @@ import "./headerStyle.css"
 function Header() {
   const { productsInCart } = useContext(ProductContext)
 
-  // const { setUsername } = useContext(UserContext)
+  // const { setuserEmail } = useContext(UserContext)
 const qtyInCart = productsInCart.length
 
 
@@ -20,7 +20,7 @@ const qtyInCart = productsInCart.length
 
   // function login() {
   //   if(document.querySelector("input").value){
-  //     setUsername(document.querySelector("input").value)
+  //     setuserEmail(document.querySelector("input").value)
   //   }
   // }
 
