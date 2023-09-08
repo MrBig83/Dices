@@ -1,95 +1,40 @@
 const { initStripe } = require("../Controllers/stripe.controller")
 const stripe = initStripe();
 const fs = require("fs");
+const bcrypt = require("bcrypt")
 
 
 const getAllUsers = async (req, res) => {
-  // let customer = await stripe.customers.retrieve(
-  //   "cus_OaAhzaTjeTWA3d",
-  //   {
-  //     apiKey: process.env.STRIPE_SECRET_KEY
-  //   }
-  // )
-  //   res.status(200).json(customer);
-  // };
     fs.readFile("../server/data/users.json", (err, data) => {
         if (err) throw err;
         res.status(200).json(JSON.parse(data));
       });
-
   };
-  const verifyUnique = async (req, res, next) => {
-    console.log("Kontrollera om unik");
-    fs.readFile("../server/data/users.json", (err, data) => {
-      if (err) throw err;
-
-    const nyData = JSON.parse(data)
-
-    if(nyData.length > 0){
-      nyData.forEach(user => {
-        if(req.body.email != user.email){
-          return next();
-        } else {
-          console.log("ABORT MISSION!!");
-          res.status(403).json("Mission aborted!")
-          // return;
-        }
-      });   // Gör kontrollen på front end istället för backend. 
-    }
-    next();
-    });
-  }
   
 const saveToStripe = async (req) => {
   const customer = await stripe.customers.create({
-    name: req.body.name, 
-    email: req.body.email,
+    // name: req.body.name, 
+    email: req.body.userEmail,
     description: req.body.description
   })
   return customer
 }
 
 const saveUser = async (req, res) => {
-
   const customer = await saveToStripe(req)
-
-  // console.log(customer);
-  
-    // const customer = await stripe.customers.create({
-    //   name: req.body.name, 
-    //   email: req.body.email,
-    //   description: req.body.description
-    // })
-
+  const hashedPassword = await bcrypt.hash(req.body.userPassword, 10)
    let customerObj = new Object()
    customerObj.id = customer.id;
    customerObj.name = customer.name;
    customerObj.email = customer.email;
+   customerObj.password = hashedPassword;
    customerObj.description = customer.description;
-  //  console.log(customerObj);
   
-
     fs.readFile("../server/data/users.json", (err, data) => {
         if (err) throw err;
         data = JSON.parse(data)
+        data.push(customerObj)
 
-        
-          // data.forEach(single => {
-          //   if(req.body.email != single.email){
-
-          //     console.log("Detta funkar ju fint... men sen då? ");
-              
-          //   }
-          // });
-          
-          data.push(customerObj)
-          // if(req.body.email == data.email){ //Måste man mappa ut datan?
-          //   console.log("Nej du");
-          // }
-        
-
-        
-        
         fs.writeFile("../server/data/users.json", JSON.stringify(data, null, 2), err => {
             if(err) {
                 console.error(err);
@@ -97,11 +42,39 @@ const saveUser = async (req, res) => {
             res.status(200).json("New user added")
         })
       });
-
 };
 
+const loginUser = async (req, res) => {
+  await fs.readFile("../server/data/users.json", (err, data) => {
+    if (err) throw err;
+    const users = JSON.parse(data);
+
+    users.forEach(user => {
+      if(req.body.userEmail == user.email){
+        bcrypt.compare(req.body.userPassword, user.password, function(err, result) {
+          console.log(result);
+          // result == true
+          if(result == true){
+            req.session = user
+            console.log(req.session);
+            res.status(200).json(req.session)
+          }
+        });
+      } 
+      
+      
+    });
+  });
+}
+
+const logoutUser = async (req, res) => {
+  req.session = null
+  res.status(204).json(null)
+}
+
   module.exports = {
-    verifyUnique,
     getAllUsers,
-    saveUser
+    saveUser, 
+    loginUser, 
+    logoutUser
   };

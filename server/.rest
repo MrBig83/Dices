@@ -3,15 +3,33 @@ GET http://localhost:3000/api/orders
 
 GET http://localhost:3000/api/users
 ###
+
+
 POST http://localhost:3000/api/save
 Content-Type: application/json
 
 {
-    "name": "MegaUser2", 
+    "name": "Mega", 
     "email": "mega2@email.com",
-    "description": "Detta är en beskrivning i .rest-filen"
+    "description": "User created in .rest-file"
 }
+###
 
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "userEmail": "a@e.com", 
+    "userPassword": "p"
+}
+###
+POST http://localhost:3000/api/users/logout
+Content-Type: application/json
+
+{
+    "userEmail": "", 
+    "userPassword": ""
+}
 ###
 
 GET http://localhost:3000/api/products

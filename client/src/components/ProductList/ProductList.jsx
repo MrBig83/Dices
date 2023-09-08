@@ -7,9 +7,6 @@ import "./ProductListStyle.css"
 
 function ProductList() {
 // const productUlRef = useRef;
-
-
-
   
 const { productList, setProductsInCart, productsInCart } = useContext(ProductContext)
 
@@ -23,8 +20,6 @@ const addToCart = (id) => {
   // } else {
   //   setProductsInCart(productsInCart => [...productsInCart, id])    
   // }
-
-
   
 }
 
@@ -34,11 +29,6 @@ useEffect(()=>{
 
 // Useeffect först
 // console.log(productList);
-
-
-
-  
-
 
 
 
