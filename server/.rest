@@ -9,8 +9,8 @@ POST http://localhost:3000/api/save
 Content-Type: application/json
 
 {
-    "name": "Mega", 
-    "email": "mega2@email.com",
+    "name": "TestAnvändare", 
+    "email": "a@e.com",
     "description": "User created in .rest-file"
 }
 ###

@@ -1,3 +1,9 @@
 [
-
+  {
+    "id": "cus_Obb2UnJWIWF3xV",
+    "name": "webUser",
+    "email": "a@e.com",
+    "password": "$2b$10$EnilwT6LKXdwD6IrIFDSBuvEBU9NAj1Xh05s/XNlmzhRvBMlzYzNy",
+    "description": "User created at webpage"
+  }
 ]

@@ -33,19 +33,21 @@ useEffect(()=>{
 
 
   return (
-    <div><h3>Här ProductList:</h3>
+  <div className="mainContent">
+  <h3>Här ProductList:</h3>
+<div className="productList">
     {productList.map((product) => (
       <div key={product.id} className="productCard">
         <img src={product.images[0]} alt="Bild"></img>
         <p> {product.name}</p>
         <button onClick={() => addToCart(product.default_price.id)}>Lägg till i kundvagn</button>
       </div>
-      
     ))}
     {/* <ul className="productUl" ref={productUlRef}></ul> */}
       {/* <p>{productList}</p> */}
       
     </div>
+    </div>  
   )
 }
 
