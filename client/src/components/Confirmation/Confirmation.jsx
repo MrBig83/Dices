@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { NavLink } from "react-router-dom"
 
 function Confirmation() {
 
@@ -32,7 +33,11 @@ useEffect(()=> {
 
 
   return (
-    isPaymentVerified ? <h1>Tack för ditt köp</h1> : <h1>Något gick fel med betalningen</h1>
+    <>
+    {isPaymentVerified ? <h1>Tack för ditt köp</h1> : <h1>Något gick fel med betalningen</h1>}
+    <NavLink to="/"><button>Tillbaka till butiken</button></NavLink>
+    
+    </>
     
   )
 }

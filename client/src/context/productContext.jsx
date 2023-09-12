@@ -16,7 +16,7 @@ export const ProductProvider = ({ children }) => {
   const [productsInCart, setProductsInCart] = useState([])
 
   const saveToLS = async (productsInCart) => {
-    localStorage.setItem("DiceCart", JSON.stringify(productsInCart))
+    localStorage.setItem("DiceCart", JSON.stringify(productsInCart)) //TODO : Fixa så att carten sparas till LocalStorage
     // console.log("Sparad till LS");
   }
 

@@ -29,6 +29,3 @@
     transition: 0.6s;
     box-shadow: 0px 0px 10px rgb(217, 255, 0);
 }
-.btnDisabled {
-    background-color: red;
-}
