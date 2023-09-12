@@ -9,7 +9,7 @@
 .header-right {
     height: inherit;
     
-    width: 10%;
+    width: 25%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -28,4 +28,7 @@
 .header-right button:hover {
     transition: 0.6s;
     box-shadow: 0px 0px 10px rgb(217, 255, 0);
+}
+.btnDisabled {
+    background-color: red;
 }

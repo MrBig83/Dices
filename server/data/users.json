@@ -5,5 +5,12 @@
     "email": "a@e.com",
     "password": "$2b$10$EnilwT6LKXdwD6IrIFDSBuvEBU9NAj1Xh05s/XNlmzhRvBMlzYzNy",
     "description": "User created at webpage"
+  },
+  {
+    "id": "cus_Ocl0VBht9WfXfy",
+    "name": "webUser",
+    "email": "kalle@email.com",
+    "password": "$2b$10$BVqfn9CA9yL6vT5OAPrXq.rGJvShdpdLVovtw.2U.0akw3UmFoaOO",
+    "description": "User created at webpage"
   }
 ]

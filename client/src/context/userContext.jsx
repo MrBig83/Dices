@@ -34,10 +34,11 @@ export function UserProvider({ children }) {
       }
     })
     const user = await loginResponse.json()
+    localStorage.setItem("LoggedInUser", user.name)
     setLoggedIn(user.id); 
   };
   
-  const saveUser = async (userEmail, password) => { //TODO: Byt userEmail till email
+  const saveUser = async (userEmail, password) => {
     await fetch(`http://localhost:3000/api/save`, {
       method: "POST", 
       body: JSON.stringify({
@@ -73,9 +74,11 @@ export function UserProvider({ children }) {
     await fetch(`/api/users/logout`, {
       method: "POST", 
     })
-    setLoggedIn("") //TODO - Ta bort dessa tre!
-    setuserEmail("")
-    setPassword("")
+    localStorage.setItem("LoggedInUser", "")
+    localStorage.setItem("DiceCart", "")
+    setLoggedIn("") 
+    // setuserEmail("")
+    // setPassword("")
   };
 
     return (

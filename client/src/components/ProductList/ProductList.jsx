@@ -1,41 +1,43 @@
-
 import { ProductContext } from "../../context/productContext"
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import "./ProductListStyle.css"
 
-
-
 function ProductList() {
-// const productUlRef = useRef;
   
-const { productList, setProductsInCart, productsInCart } = useContext(ProductContext)
+const { productList, setProductsInCart, productsInCart, saveToLS } = useContext(ProductContext)
 
-
-const addToCart = (id) => {
-  
-  setProductsInCart(productsInCart => [...productsInCart, id])    
-  
-  // if(productsInCart.lenght < 1){
-  //   setProductsInCart(id)
-  // } else {
-  //   setProductsInCart(productsInCart => [...productsInCart, id])    
-  // }
-  
+const addToCart = (product) => {
+  let cartObj = new Object()
+  cartObj.id = product;
+  cartObj.qty = 1;  
+  updateItemQuantity(cartObj)
+}
+    
+    const updateItemQuantity = (cartObj) => {
+      if (productsInCart.length > 0) {
+        const existingCartItemIndex = productsInCart.findIndex((productsInCart) => productsInCart.id === cartObj.id)
+        
+        if (existingCartItemIndex !== -1){
+          const updatedCart = [...productsInCart];
+          updatedCart[existingCartItemIndex].qty += 1;
+          setProductsInCart(updatedCart)
+        } else {
+          //TODO Spara kundkorgen i LS
+          setProductsInCart([...productsInCart, cartObj])   
+        }
+      } else {
+        setProductsInCart([...productsInCart, cartObj])    
+      }
+      
+      saveToLS() //TODO Denna funkar inte på första produkten
 }
 
-useEffect(()=>{
-  console.log("Produkter i vagn: ", productsInCart);
-},[productsInCart])
-
-// Useeffect först
-// console.log(productList);
 
 
-
-  return (
+return (
   <div className="mainContent">
-  <h3>Här ProductList:</h3>
-<div className="productList">
+    <h3>Här ProductList:</h3>
+    <div className="productList">
     {productList.map((product) => (
       <div key={product.id} className="productCard">
         <img src={product.images[0]} alt="Bild"></img>
@@ -43,15 +45,9 @@ useEffect(()=>{
         <button onClick={() => addToCart(product.default_price.id)}>Lägg till i kundvagn</button>
       </div>
     ))}
-    {/* <ul className="productUl" ref={productUlRef}></ul> */}
-      {/* <p>{productList}</p> */}
-      
     </div>
     </div>  
   )
 }
 
 export default ProductList
-
-
-

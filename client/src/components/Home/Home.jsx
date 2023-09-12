@@ -47,17 +47,11 @@ const Home = () => {
         <p>Användare:</p>
         <input onChange={(e) => setuserEmail(e.target.value)} className="userEmail" type="text" placeholder="Email" />
         <input onChange={(e) => setPassword(e.target.value)} className="password" type="text" placeholder="Lösenord" />
-        <button onClick={() => login(userEmail, password)}>Logga in</button>
+        {!loggedIn ? <button onClick={() => login(userEmail, password)}>Logga in</button> : "" }
         <button onClick={() => logout()}>Logga ut</button>
         <button onClick={() => createUser(userEmail, password)}>Skapa användare</button>
         <p>Här vill jag visa mina produkter</p>
-        <ProductList />
-
-        <p>Nedan visas userEmail om man loggar in. TODO : Det skall tas bort sen... </p>
-        <h1>{userEmail}</h1>
-        <h1>{password}</h1>
-        <h1>{loggedIn}</h1>
-        
+        <ProductList />        
     </div>
   )
 }

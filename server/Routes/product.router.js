@@ -1,13 +1,13 @@
 const { Router } = require("express");
 
-const {
-    getAllProducts
-} = require ("../Controllers/product.controller")
+const { getAllProducts, createCheckoutSession } = require ("../Controllers/product.controller");
+
 
 //Middlewarez
 
 const productRouter = Router()
     .get("/products", getAllProducts)
+    .post("/create-checkout-session", createCheckoutSession)
 //   .Router()
 //   .post("/users/register", validate(UserCreateValidationSchema), register)
 //   .post("/users/login", login)

@@ -34,8 +34,4 @@ app.use("/api", productRouter);
 app.use("/api", orderRouter);
 app.use("/api", userRouter);
 
-app.get("/", (req, res) => {
-    res.send("Hello from Express")
-})
-
 app.listen(3000, () => console.log("Server is up..."))
