@@ -14,13 +14,14 @@ const getAllProducts = async (req, res) => {
   const createCheckoutSession = async (req, res) => {
     try {
       const session = await stripe.checkout.sessions.create({
-          line_items: req.body.productsInCart.map((item => {
+          line_items: req.body.requestBody.productsInCart.map((item => {
               return {
                   price: item.id, 
                   quantity: item.qty
               }
           })), 
           mode: "payment", 
+          customer: req.body.requestBody.loggedinUser,
           allow_promotion_codes: true,
           success_url: `${CLIENT_URL}/confirmation`, 
           cancel_url: `${CLIENT_URL}`

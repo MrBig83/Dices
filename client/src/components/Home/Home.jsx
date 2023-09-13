@@ -1,11 +1,26 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { UserContext } from "../../context/userContext"
+// import { ProductContext } from "../../context/productContext"
+import { OrderContext } from "../../context/orderContext"
 import ProductList from "../ProductList/ProductList"
+import Orders from "../Orders/Orders"
 
 
 const Home = () => {
-  const { userEmail, setuserEmail, password, setPassword, userList, saveUser, loginUser, loggedIn, logout } = useContext(UserContext)
+  const { userEmail, setuserEmail, password, setPassword, userList, saveUser, loginUser, loggedIn, setLoggedIn, logout } = useContext(UserContext)
+  const {showOrders} = useContext(OrderContext)
 
+  
+useEffect(()=> {
+  if(localStorage.getItem("LoggedInUser")){ //Detta går inte att genomföra så tidigt i koden. Browsern renderar fortfarande... ger felkod
+    // localStorage.getItem("LoggedInUser", user.name)
+    setuserEmail(localStorage.getItem("LoggedInUserEmail"))
+    setLoggedIn(localStorage.getItem("LoggedInUserId")); 
+  }
+}, [])
+  
+  
+  
   async function login() {
     if(document.querySelector(".userEmail").value){
       const index = userList.indexOf(document.querySelector(".userEmail").value)
@@ -50,6 +65,7 @@ const Home = () => {
         {!loggedIn ? <button onClick={() => login(userEmail, password)}>Logga in</button> : "" }
         <button onClick={() => logout()}>Logga ut</button>
         <button onClick={() => createUser(userEmail, password)}>Skapa användare</button>
+        {showOrders ? <Orders /> : ""}
         <p>Här vill jag visa mina produkter</p>
         <ProductList />        
     </div>

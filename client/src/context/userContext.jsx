@@ -34,11 +34,29 @@ export function UserProvider({ children }) {
       }
     })
     const user = await loginResponse.json()
-    localStorage.setItem("LoggedInUser", user.name)
-    setLoggedIn(user.id); 
+    
+    console.log(user); // TODO Ta bort denna loggen
+    console.log(user.email); // TODO Ta bort denna loggen
+
+
+      setuserEmail(user.email)
+      setLoggedIn(user.id); 
+      localStorage.setItem("LoggedInUser", user.name)
+      localStorage.setItem("LoggedInUserEmail", user.email)
+      localStorage.setItem("LoggedInUserId", user.id)
+    
   };
   
   const saveUser = async (userEmail, password) => {
+    if(userList.length > 0) {
+      const existingUserIndex = userList.indexOf(userEmail)
+      if(existingUserIndex !== -1){
+        // setWarning("Användaren finns redan") // TODO : Skapa funktionen
+        console.log("Användaren finns redan");
+        return
+      }
+    }
+
     await fetch(`http://localhost:3000/api/save`, {
       method: "POST", 
       body: JSON.stringify({
@@ -74,8 +92,11 @@ export function UserProvider({ children }) {
     await fetch(`/api/users/logout`, {
       method: "POST", 
     })
-    localStorage.setItem("LoggedInUser", "")
-    localStorage.setItem("DiceCart", "")
+    localStorage.removeItem("LoggedInUser")
+    localStorage.removeItem("LoggedInUserEmail")
+    localStorage.removeItem("LoggedInUserId")
+    localStorage.removeItem("DiceCart")
+    localStorage
     setLoggedIn("") 
     // setuserEmail("")
     // setPassword("")

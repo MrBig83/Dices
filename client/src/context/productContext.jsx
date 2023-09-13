@@ -1,34 +1,39 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react'
+import { UserContext } from "./userContext";
 
 const defaultValues = {
   productList: [],
   productsInCart: [],
+  
   setProductList: () => {},
-  setProductsInCart: () => {}
+  setProductsInCart: () => {},
+  
 }
 
 export const ProductContext = createContext(defaultValues);
 
 // eslint-disable-next-line react/prop-types
 export const ProductProvider = ({ children }) => {
-    
+  
   const [productList, setProductList] = useState([]);
-  const [productsInCart, setProductsInCart] = useState([])
-
-  const saveToLS = async (productsInCart) => {
-    localStorage.setItem("DiceCart", JSON.stringify(productsInCart)) //TODO : Fixa så att carten sparas till LocalStorage
-    // console.log("Sparad till LS");
-  }
-
+  const [productsInCart, setProductsInCart] = useState([]) //Kan man ha localstorage i sin useState kanske? TODO : Prova detta. 
+  
+  const { loggedIn } = useContext(UserContext)
+  
   const performCheckout = async (productsInCart) => {
+    const requestBody = {
+      loggedinUser: loggedIn, 
+      productsInCart
+    }
     const response = await fetch (`http://localhost:3000/api/create-checkout-session`, {
       method: "POST", 
       headers: {
         "Content-type": "application/json; charset=UTF-8"
       },
-      body: JSON.stringify({
-       productsInCart
-      }) 
+      body: 
+        JSON.stringify({requestBody})
+        // JSON.stringify({productsInCart})
+      
     })
     const { url, sessionId } = await response.json()
     localStorage.setItem("SessionId", sessionId)
@@ -51,8 +56,7 @@ export const ProductProvider = ({ children }) => {
               productsInCart,
               setProductList,
               setProductsInCart, 
-              performCheckout, 
-              saveToLS
+              performCheckout,
             }}
             >
             {children}

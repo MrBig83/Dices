@@ -4,11 +4,13 @@ import Home from "./components/Home/Home"
 import Confirmation from "./components/Confirmation/Confirmation"
 import { UserProvider } from "./context/userContext"
 import { ProductProvider } from "./context/productContext"
+import { OrderProvider } from "./context/orderContext"
 
 function App() {
 
   return (
     <BrowserRouter>
+    <OrderProvider>
       <UserProvider>
       <ProductProvider>
       <Header />
@@ -18,6 +20,7 @@ function App() {
         </Routes>
         </ProductProvider>
       </UserProvider>
+      </OrderProvider>
     </BrowserRouter>
   )
 }

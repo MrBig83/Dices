@@ -1,15 +1,23 @@
 import { ProductContext } from "../../context/productContext"
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import "./ProductListStyle.css"
+// import { UserContext } from "../../context/userContext";
 
 function ProductList() {
   
-const { productList, setProductsInCart, productsInCart, saveToLS } = useContext(ProductContext)
+const { productList, setProductsInCart, productsInCart } = useContext(ProductContext)
+// const { loggedIn } = useContext(UserContext)
+
+useEffect(()=> {
+  localStorage.setItem("DiceCart", JSON.stringify(productsInCart))
+  // saveToLS(productsInCart) //TODO Denna funkar inte på första produkten
+}, [productsInCart])
 
 const addToCart = (product) => {
-  let cartObj = new Object()
-  cartObj.id = product;
-  cartObj.qty = 1;  
+  const cartObj = {
+  id: product,
+  qty: 1,
+  }
   updateItemQuantity(cartObj)
 }
     
@@ -21,27 +29,32 @@ const addToCart = (product) => {
           const updatedCart = [...productsInCart];
           updatedCart[existingCartItemIndex].qty += 1;
           setProductsInCart(updatedCart)
+          
         } else {
           //TODO Spara kundkorgen i LS
           setProductsInCart([...productsInCart, cartObj])   
+          
+          
         }
       } else {
         setProductsInCart([...productsInCart, cartObj])    
+        
+        
       }
-      
-      saveToLS() //TODO Denna funkar inte på första produkten
-}
+    }
+    
 
-
-
+console.log(productList);
 return (
   <div className="mainContent">
     <h3>Här ProductList:</h3>
     <div className="productList">
     {productList.map((product) => (
+      
       <div key={product.id} className="productCard">
         <img src={product.images[0]} alt="Bild"></img>
-        <p> {product.name}</p>
+        <p>{product.name}</p>
+        <p>{product.default_price.unit_amount /100} {product.default_price.currency}</p>
         <button onClick={() => addToCart(product.default_price.id)}>Lägg till i kundvagn</button>
       </div>
     ))}

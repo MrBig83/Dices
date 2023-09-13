@@ -6,6 +6,22 @@ const getAllOrders = async (req, res) => {
     res.status(200).json("orders");
   };
 
+const getUserOrders = async (req, res) => {
+  const userOrders = []
+  fs.readFile("../server/data/orders.json", (err, data) => {
+    if (err) throw err;
+    data = JSON.parse(data)
+    data.map((order) => {
+      if(order.customerEmail == req.params.email){
+        userOrders.push(order)
+      };
+    })
+    console.log(userOrders);
+    res.status(200).json(userOrders); //Logga svaret härt
+  })
+  
+  };
+
 const verifySession = async (req, res) => {
   try {
 
@@ -59,5 +75,6 @@ const verifySession = async (req, res) => {
 
   module.exports = {
     getAllOrders,
+    getUserOrders,
     verifySession
   };

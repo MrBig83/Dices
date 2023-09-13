@@ -2,6 +2,7 @@ const { Router } = require("express");
 
 const {
     getAllOrders, 
+    getUserOrders,
     verifySession
 } = require ("../Controllers/order.controller")
 
@@ -9,6 +10,7 @@ const {
 
 const orderRouter = Router()
     .get("/orders", getAllOrders)
+    .get("/orders/:email", getUserOrders)
     .post("/verify-session", verifySession)
 //   .Router()
 //   .post("/users/register", validate(UserCreateValidationSchema), register)
