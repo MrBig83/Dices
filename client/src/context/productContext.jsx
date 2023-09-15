@@ -4,7 +4,8 @@ import { UserContext } from "./userContext";
 const defaultValues = {
   productList: [],
   productsInCart: [],
-  
+  showCart: false,
+  setShowCart: () => {},
   setProductList: () => {},
   setProductsInCart: () => {},
   
@@ -17,7 +18,8 @@ export const ProductProvider = ({ children }) => {
   
   const [productList, setProductList] = useState([]);
   const [productsInCart, setProductsInCart] = useState([]) //Kan man ha localstorage i sin useState kanske? TODO : Prova detta. 
-  
+  const [showCart, setShowCart] = useState(false)
+
   const { loggedIn } = useContext(UserContext)
   
   const performCheckout = async (productsInCart) => {
@@ -54,6 +56,8 @@ export const ProductProvider = ({ children }) => {
             value={{
               productList, 
               productsInCart,
+              showCart,
+              setShowCart,
               setProductList,
               setProductsInCart, 
               performCheckout,

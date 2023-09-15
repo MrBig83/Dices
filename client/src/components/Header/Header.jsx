@@ -11,27 +11,11 @@ import "./headerStyle.css"
 
 
 function Header() {
-  const { productsInCart, performCheckout } = useContext(ProductContext)
+  const { productsInCart, performCheckout, showCart, setShowCart } = useContext(ProductContext)
   const { loggedIn, logout } = useContext(UserContext)
   const { showOrders, setShowOrders } = useContext(OrderContext)
   
 
-  // function checkLS() {
-  //   let diceCart  = localStorage.getItem("DiceCart")
-  //   if(diceCart) {
-  //     diceCart = JSON.parse(diceCart)
-  //     setProductsInCart(diceCart)
-  //     return
-  //   }
-  //   return
-  // }
-
-  // useEffect(()=> {
-  //   const loggedInUserName = localStorage.getItem("LoggedInUser")
-  // })
-
-
-  // setProductsInCart(JSON.parse(localStorage.getItem("DiceCart")))
     let totalQty = 0;
   
     productsInCart.map((item) => {
@@ -52,9 +36,18 @@ function Header() {
       console.log(showOrders);
       console.log("Nu ska vi DÖLJA ordrar..."); //TODO Bygg denna funktion
     }
-
-    
-
+  }
+  
+  function renderCart() {
+    if(!showCart){
+      setShowCart(true)
+      console.log("Visa kundvagnen")
+      console.log(showCart);
+    } else {
+      setShowCart(false)
+      console.log("Göm kundvagnen");
+      console.log(showCart);
+    }
   }
 
   return (
@@ -66,7 +59,7 @@ function Header() {
           {!loggedIn ? <button onClick={renderLogin}>Logga in</button> : <button onClick={() => logout()}>Logga ut</button>}
           {loggedIn ? <button onClick={renderOrders}>Mina ordrar</button> : ""}
           
-          <img alt="Cart" />
+          <button onClick={renderCart}>Kundvagn</button>
           <p>{totalQty}</p>
           {loggedIn ? <button onClick={() => performCheckout(productsInCart, loggedIn)}>Köp</button> : 
           <button className="btnDisabled">Köp</button>}

@@ -1,14 +1,16 @@
 import { useContext, useEffect } from "react"
 import { UserContext } from "../../context/userContext"
-// import { ProductContext } from "../../context/productContext"
+import { ProductContext } from "../../context/productContext"
 import { OrderContext } from "../../context/orderContext"
 import ProductList from "../ProductList/ProductList"
 import Orders from "../Orders/Orders"
+import Cart from "../Cart/Cart"
 
 
 const Home = () => {
   const { userEmail, setuserEmail, password, setPassword, userList, saveUser, loginUser, loggedIn, setLoggedIn, logout } = useContext(UserContext)
   const {showOrders} = useContext(OrderContext)
+  const { showCart } = useContext(ProductContext)
 
   
 useEffect(()=> {
@@ -66,6 +68,7 @@ useEffect(()=> {
         <button onClick={() => logout()}>Logga ut</button>
         <button onClick={() => createUser(userEmail, password)}>Skapa användare</button>
         {showOrders ? <Orders /> : ""}
+        {showCart ? <Cart /> : ""}
         <p>Här vill jag visa mina produkter</p>
         <ProductList />        
     </div>
