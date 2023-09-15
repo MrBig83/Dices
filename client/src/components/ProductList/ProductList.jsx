@@ -1,12 +1,12 @@
 import { ProductContext } from "../../context/productContext"
 import { useContext, useEffect } from 'react';
 import "./ProductListStyle.css"
-// import { UserContext } from "../../context/userContext";
+import { UserContext } from "../../context/userContext";
 
 function ProductList() {
   
 const { productList, setProductsInCart, productsInCart } = useContext(ProductContext)
-// const { loggedIn } = useContext(UserContext)
+const { loggedIn } = useContext(UserContext)
 
 useEffect(()=> {
   localStorage.setItem("DiceCart", JSON.stringify(productsInCart))
@@ -44,18 +44,21 @@ const addToCart = (product) => {
     }
     
 
-console.log(productList);
+
 return (
   <div className="mainContent">
-    <h3>Här ProductList:</h3>
+    <h3>Våra produkter:</h3>
     <div className="productList">
     {productList.map((product) => (
       
       <div key={product.id} className="productCard">
         <img src={product.images[0]} alt="Bild"></img>
-        <p>{product.name}</p>
-        <p>{product.default_price.unit_amount /100} {product.default_price.currency}</p>
-        <button onClick={() => addToCart(product.default_price.id)}>Lägg till i kundvagn</button>
+        <div className="cardInfo">
+          <p>{product.name}</p>
+          <p>{product.default_price.unit_amount /100} {product.default_price.currency}</p>
+          {loggedIn ? <button onClick={() => addToCart(product.default_price.id)}>Lägg till i kundvagn</button> : 
+          <button className="diabledButton">Logga in för att handla</button>}
+        </div>
       </div>
     ))}
     </div>

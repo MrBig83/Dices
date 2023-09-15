@@ -9,10 +9,10 @@
 .header-right {
     height: inherit;
     
-    width: 25%;
+    width: 40%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end
 }
 
 .header-right button {
@@ -28,4 +28,19 @@
 .header-right button:hover {
     transition: 0.6s;
     box-shadow: 0px 0px 10px rgb(217, 255, 0);
+}
+.qty {
+    top: -10px;
+    right: 10px;
+    position: relative;
+    height: 15px;
+    width: 25px;
+    background-color: red;
+    border-radius: 0.5rem
+}
+.qty p {
+    position: absolute;
+    top: -17px;
+    right: 3px;
+    
 }

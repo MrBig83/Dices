@@ -11,7 +11,7 @@ import "./headerStyle.css"
 
 
 function Header() {
-  const { productsInCart, performCheckout, showCart, setShowCart } = useContext(ProductContext)
+  const { productsInCart, showCart, setShowCart } = useContext(ProductContext)
   const { loggedIn, logout } = useContext(UserContext)
   const { showOrders, setShowOrders } = useContext(OrderContext)
   
@@ -41,12 +41,8 @@ function Header() {
   function renderCart() {
     if(!showCart){
       setShowCart(true)
-      console.log("Visa kundvagnen")
-      console.log(showCart);
     } else {
       setShowCart(false)
-      console.log("Göm kundvagnen");
-      console.log(showCart);
     }
   }
 
@@ -60,9 +56,11 @@ function Header() {
           {loggedIn ? <button onClick={renderOrders}>Mina ordrar</button> : ""}
           
           <button onClick={renderCart}>Kundvagn</button>
-          <p>{totalQty}</p>
-          {loggedIn ? <button onClick={() => performCheckout(productsInCart, loggedIn)}>Köp</button> : 
-          <button className="btnDisabled">Köp</button>}
+          {totalQty > 0 ? <div className="qty">
+            <p >{totalQty}</p>
+          </div> : "" }
+          {/* {loggedIn ? <button onClick={() => performCheckout(productsInCart, loggedIn)}>Köp</button> : 
+          <button className="btnDisabled">Köp</button>} */}
           
         </div>
     </div>

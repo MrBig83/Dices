@@ -10,14 +10,14 @@ import Cart from "../Cart/Cart"
 const Home = () => {
   const { userEmail, setuserEmail, password, setPassword, userList, saveUser, loginUser, loggedIn, setLoggedIn, logout } = useContext(UserContext)
   const {showOrders} = useContext(OrderContext)
-  const { showCart } = useContext(ProductContext)
+  const { showCart, setProductsInCart } = useContext(ProductContext)
 
   
 useEffect(()=> {
-  if(localStorage.getItem("LoggedInUser")){ //Detta går inte att genomföra så tidigt i koden. Browsern renderar fortfarande... ger felkod
-    // localStorage.getItem("LoggedInUser", user.name)
+  if(localStorage.getItem("LoggedInUser")){ 
     setuserEmail(localStorage.getItem("LoggedInUserEmail"))
     setLoggedIn(localStorage.getItem("LoggedInUserId")); 
+    setProductsInCart(JSON.parse(localStorage.getItem("DiceCart")))
   }
 }, [])
   
@@ -64,12 +64,12 @@ useEffect(()=> {
         <p>Användare:</p>
         <input onChange={(e) => setuserEmail(e.target.value)} className="userEmail" type="text" placeholder="Email" />
         <input onChange={(e) => setPassword(e.target.value)} className="password" type="text" placeholder="Lösenord" />
-        {!loggedIn ? <button onClick={() => login(userEmail, password)}>Logga in</button> : "" }
-        <button onClick={() => logout()}>Logga ut</button>
+        {!loggedIn ? <button onClick={() => login(userEmail, password)}>Logga in</button> : 
+        <button onClick={() => logout()}>Logga ut</button>}
         <button onClick={() => createUser(userEmail, password)}>Skapa användare</button>
+        <p> TODO : Skapa popup för inloggning</p>
         {showOrders ? <Orders /> : ""}
         {showCart ? <Cart /> : ""}
-        <p>Här vill jag visa mina produkter</p>
         <ProductList />        
     </div>
   )

@@ -4,10 +4,12 @@ import { UserContext } from "./userContext";
 const defaultValues = {
   productList: [],
   productsInCart: [],
+  cartItemsObj: [],
   showCart: false,
   setShowCart: () => {},
   setProductList: () => {},
   setProductsInCart: () => {},
+  setCartItemsObj: () => {},
   
 }
 
@@ -19,7 +21,7 @@ export const ProductProvider = ({ children }) => {
   const [productList, setProductList] = useState([]);
   const [productsInCart, setProductsInCart] = useState([]) //Kan man ha localstorage i sin useState kanske? TODO : Prova detta. 
   const [showCart, setShowCart] = useState(false)
-
+  
   const { loggedIn } = useContext(UserContext)
   
   const performCheckout = async (productsInCart) => {
@@ -34,14 +36,14 @@ export const ProductProvider = ({ children }) => {
       },
       body: 
         JSON.stringify({requestBody})
-        // JSON.stringify({productsInCart})
-      
     })
     const { url, sessionId } = await response.json()
     localStorage.setItem("SessionId", sessionId)
     window.location = url;
   }
+
   
+    
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await fetch(`http://localhost:3000/api/products`);
@@ -61,6 +63,7 @@ export const ProductProvider = ({ children }) => {
               setProductList,
               setProductsInCart, 
               performCheckout,
+
             }}
             >
             {children}
