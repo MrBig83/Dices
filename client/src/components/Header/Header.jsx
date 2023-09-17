@@ -12,7 +12,7 @@ import "./headerStyle.css"
 
 function Header() {
   const { productsInCart, showCart, setShowCart } = useContext(ProductContext)
-  const { loggedIn, logout } = useContext(UserContext)
+  const { loggedIn, logout, showAccount, setShowAccount } = useContext(UserContext)
   const { showOrders, setShowOrders } = useContext(OrderContext)
   
 
@@ -23,18 +23,18 @@ function Header() {
     })
   
 
-  function renderLogin() {
-    console.log("Nu ska vi visa en login-popup"); //TODO Bygg denna funktion
-  }
   function renderOrders() {
     if(!showOrders){
       setShowOrders(true)
-      console.log(showOrders);
-      console.log("Nu ska vi visa ordrar..."); //TODO Bygg denna funktion
     } else {
       setShowOrders(false)
-      console.log(showOrders);
-      console.log("Nu ska vi DÖLJA ordrar..."); //TODO Bygg denna funktion
+    }
+  }
+  function renderAccount() {
+    if(!showAccount){
+      setShowAccount(true)
+    } else {
+      setShowAccount(false)
     }
   }
   
@@ -52,16 +52,13 @@ function Header() {
         <div className="header-right">
 
           {loggedIn ? <p>Välkommen: {localStorage.getItem("LoggedInUser")}</p> : ""}
-          {!loggedIn ? <button onClick={renderLogin}>Logga in</button> : <button onClick={() => logout()}>Logga ut</button>}
+          <button onClick={renderAccount}>Konto</button>
           {loggedIn ? <button onClick={renderOrders}>Mina ordrar</button> : ""}
           
           <button onClick={renderCart}>Kundvagn</button>
           {totalQty > 0 ? <div className="qty">
             <p >{totalQty}</p>
-          </div> : "" }
-          {/* {loggedIn ? <button onClick={() => performCheckout(productsInCart, loggedIn)}>Köp</button> : 
-          <button className="btnDisabled">Köp</button>} */}
-          
+          </div> : "" }          
         </div>
     </div>
   )

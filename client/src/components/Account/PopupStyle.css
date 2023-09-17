@@ -1,0 +1,68 @@
+* {
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.accountWindow {
+    z-index: 10;    
+    position: absolute;
+    left: calc(50vw - 200px);
+    top: calc(50vh - 300px);
+    width: 450px;
+    backdrop-filter: blur(10px);
+    min-height: 250px;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: rgba(211, 211, 211, 0.85);
+}
+.accountWindow input {
+    margin-top: 5px;
+}
+.accountWindow button {
+    margin-top: 5px;
+}
+.accountWindowHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(250, 250, 250, 0.5);
+    height: 30px;
+}
+.closeWindow {
+    position: relative;
+    top: -3px;
+    height: 30px;
+    width: 30px;
+    border: 0px;
+    background-color: rgba(255, 0, 0, 0.514);
+    border-top-right-radius: 20px;
+}
+.closeWindow:hover {
+    background-color: rgba(255, 0, 0, 0.7);
+    transition: 0.5s;
+}
+h3 {
+    margin-left: 50px;
+}
+.accountWindowContent {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 10px;
+    margin-top: 20px;
+}
+.createAccountWindow {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0px;
+}
+.loginWindow {
+    display: flex;
+    flex-direction: column;
+}
+.loginWindow p {
+    margin-top: 10px;
+}

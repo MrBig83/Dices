@@ -2,13 +2,19 @@ import { createContext, useState, useEffect } from 'react';
 
 const defaultValues = {
     userEmail: "",
-    setuserEmail: () => {},
     password: "",
-    setPassword: () => {}, 
     userList: "", 
-    setUserList: () => {}, 
     loggedIn: "", 
-    setLoggedIn: () => {}
+    showAccount: false,
+    showCreateUserOptions: false, 
+    username: "", 
+    setuserEmail: () => {},
+    setPassword: () => {}, 
+    setUserList: () => {}, 
+    setLoggedIn: () => {},
+    setShowAccount: () => {},
+    setShowCreateUserOptions: () => {}, 
+    setUsername: () => {}
 }
 
 export const UserContext = createContext(defaultValues);
@@ -20,6 +26,9 @@ export function UserProvider({ children }) {
   const [userEmail, setuserEmail] = useState("")
   const [password, setPassword] = useState("")
   const [userList, setUserList] = useState([])
+  const [showAccount, setShowAccount] = useState(false)
+  const [showCreateUserOptions, setShowCreateUserOptions] = useState(false)
+  const [username, setUsername] = useState("")
   
   // eslint-disable-next-line react-refresh/only-export-components
   const loginUser = async (userEmail, password) => {
@@ -34,7 +43,13 @@ export function UserProvider({ children }) {
       }
     })
     const user = await loginResponse.json()
-    
+      console.log(loginResponse);
+      if(!loginResponse.ok){
+        console.log("Inloggningen misslyckades");
+        console.log("TODO - Visa felmeddelande");
+      }
+      setShowAccount(false)
+  
     console.log(user); // TODO Ta bort denna loggen
     console.log(user.email); // TODO Ta bort denna loggen
 
@@ -47,7 +62,7 @@ export function UserProvider({ children }) {
     
   };
   
-  const saveUser = async (userEmail, password) => {
+  const saveUser = async (username, userEmail, password) => {
     if(userList.length > 0) {
       const existingUserIndex = userList.indexOf(userEmail)
       if(existingUserIndex !== -1){
@@ -60,7 +75,8 @@ export function UserProvider({ children }) {
     await fetch(`http://localhost:3000/api/save`, {
       method: "POST", 
       body: JSON.stringify({
-        name: "webUser", //TODO ha med namn vid skapande av användare
+        //name: "webUser", //TODO ha med namn vid skapande av användare
+        name: username, // TODO Skapa endpoint med användarnamn
         userEmail: userEmail, 
         userPassword: password, 
         description: "User created at webpage"
@@ -115,7 +131,13 @@ export function UserProvider({ children }) {
                 userList, 
                 setUserList, 
                 saveUser,
-                setLoggedIn,               
+                setLoggedIn,
+                showAccount, 
+                setShowAccount,
+                showCreateUserOptions, 
+                setShowCreateUserOptions,
+                username, 
+                setUsername               
             }}
             >
             {children}

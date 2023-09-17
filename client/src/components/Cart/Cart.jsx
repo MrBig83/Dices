@@ -2,11 +2,12 @@ import { useContext } from "react"
 import { ProductContext } from "../../context/productContext";
 
 import "./CartStyle.css"
+
 import { UserContext } from "../../context/userContext";
 
 function Cart() {
 
-  const { productsInCart, productList, performCheckout } = useContext(ProductContext)
+  const { productsInCart, productList, performCheckout, setShowCart } = useContext(ProductContext)
   const { loggedIn } = useContext(UserContext)
 
 let cartItemsObj = productsInCart;
@@ -36,17 +37,25 @@ console.log(cartItemsObj);
 
 return (
     <div className="cartWindow">
-        <h3 className="header">Din kundvagn, {localStorage.getItem("LoggedInUser")}:</h3>
+    
+    
+    <div className="cartWindowHeader">
+    <h3>Din kundvagn, {localStorage.getItem("LoggedInUser")}:</h3>
+    <button className="closeWindow" onClick={() => setShowCart(false)}>X</button>
+  </div>
+
+
+        
         {cartItemsObj.length < 1 ? <p>Din kundvagn är tom</p> : ""}
         {cartItemsObj.map((item, index) => (
           <div key={index} className="cartListItem">
             <img src={item.image} />
-            <p>{item.id}</p>
+            {/* <p>{item.id}</p> */}
             {/* <p>{item.prodId}</p> */}
             <p>{item.qty} x {item.name} - {item.price}{item.curr} = {item.qty * item.price}{item.curr}</p>
           </div>
         ))}
-        {cartItemsObj.length > 0 ? <p className="sum">Total summa: <strong> {cartSum}{cartItemsObj[0].curr}</strong></p> : ""}
+        {cartItemsObj.length > 0 ? <p className="sum">Totalt:<strong>{cartSum}{cartItemsObj[0].curr}</strong></p> : ""}
         
         {cartItemsObj.length > 0 ? <button onClick={() => performCheckout(productsInCart, loggedIn)}>Köp</button> : 
           ""}

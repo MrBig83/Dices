@@ -55,6 +55,8 @@ const loginUser = async (req, res) => {
           if(result == true){
             req.session = user
             res.status(200).json(req.session)
+          } else {
+            res.status(401).json("Fel användarnamn eller lösenord")
           }
         });
       } 
