@@ -1,6 +1,4 @@
 import { createContext, useState, useEffect } from 'react'
-// import { UserContext } from "./userContext";
-
 
 const defaultValues = {
   showOrders: false,
@@ -17,15 +15,7 @@ export const OrderProvider = ({ children }) => {
   const [orderList, setOrderList] = useState([]);
   const [showOrders, setShowOrders] = useState(false)
   
-  
-  // const { userEmail } = useContext(UserContext)
   const userEmail = localStorage.getItem("LoggedInUserEmail")
-  
-
-    
-
-
-
   
   useEffect(()=> {
     if(showOrders){
@@ -45,7 +35,6 @@ export const OrderProvider = ({ children }) => {
     }
   }, [showOrders])
     
- 
     return (
         <OrderContext.Provider 
             value={{
@@ -53,7 +42,6 @@ export const OrderProvider = ({ children }) => {
               showOrders, 
               setShowOrders, 
               setOrderList
-
             }}
             >
             {children}

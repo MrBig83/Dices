@@ -37,8 +37,6 @@ const addToCart = (product) => {
       }
     }
     
-
-
 return (
   <div className="mainContent">
     <h3>Våra produkter:</h3>

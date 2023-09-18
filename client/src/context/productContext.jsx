@@ -10,24 +10,18 @@ const defaultValues = {
   setProductList: () => {},
   setProductsInCart: () => {},
   setCartItemsObj: () => {},
-  
 }
 
 export const ProductContext = createContext(defaultValues);
 
 // eslint-disable-next-line react/prop-types
 export const ProductProvider = ({ children }) => {
-  
-  // let buffer = JSON.parse(localStorage.getItem("DiceCart"))
   const [productsInCart, setProductsInCart] = useState([]) 
   const [productList, setProductList] = useState([]);
   const [showCart, setShowCart] = useState(false)
   
   const { loggedIn } = useContext(UserContext)
   
-  
-  
-
   const performCheckout = async (productsInCart) => {
     const requestBody = {
       loggedinUser: loggedIn, 
@@ -46,8 +40,6 @@ export const ProductProvider = ({ children }) => {
     window.location = url;
   }
 
-  
-    
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await fetch(`http://localhost:3000/api/products`);
@@ -67,7 +59,6 @@ export const ProductProvider = ({ children }) => {
               setProductList,
               setProductsInCart, 
               performCheckout,
-
             }}
             >
             {children}

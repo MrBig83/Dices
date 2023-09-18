@@ -1,6 +1,4 @@
 import { useContext } from "react"
-// import { ProductContext } from "../../context/productContext";
-
 import "./PopupStyle.css"
 import { UserContext } from "../../context/userContext";
 import Login from "./LogIn"

@@ -3,7 +3,6 @@ const stripe = initStripe();
 const fs = require("fs");
 const bcrypt = require("bcrypt")
 
-
 const getAllUsers = async (req, res) => {
     fs.readFile("../server/data/users.json", (err, data) => {
         if (err) throw err;
@@ -60,8 +59,6 @@ const loginUser = async (req, res) => {
           }
         });
       } 
-      
-      
     });
   });
 }

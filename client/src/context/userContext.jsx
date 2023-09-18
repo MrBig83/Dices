@@ -50,13 +50,11 @@ export function UserProvider({ children }) {
         setWarning("Inloggningen misslyckades")
       }
       setShowAccount(false)
-
       setuserEmail(user.email)
       setLoggedIn(user.id); 
       localStorage.setItem("LoggedInUser", user.name)
       localStorage.setItem("LoggedInUserEmail", user.email)
       localStorage.setItem("LoggedInUserId", user.id)
-    
   };
   
   const saveUser = async (username, userEmail, password) => {
@@ -82,11 +80,10 @@ export function UserProvider({ children }) {
         }
       }
       setShowCreateUserOptions(false)
-  } else {
+    } else {
     setWarning("Fyll i samtliga fält")
+    }
   }
-  }
-
 
   useEffect(() => {
     setTimeout(() => {
@@ -108,7 +105,6 @@ export function UserProvider({ children }) {
     fetchuserEmails();
   },[userEmail]);
 
-  // Function to handle logout
   const logout = async () => {
     await fetch(`/api/users/logout`, {
       method: "POST", 

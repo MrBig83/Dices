@@ -16,7 +16,7 @@ const getUserOrders = async (req, res) => {
         userOrders.push(order)
       };
     })
-    res.status(200).json(userOrders); //Logga svaret härt
+    res.status(200).json(userOrders);
   })
   };
 

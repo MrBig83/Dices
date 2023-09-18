@@ -1,28 +1,20 @@
 import { useContext } from "react"
 import { NavLink } from "react-router-dom"
-// import {FontAwesomeIcon} from "font-awesome"
-
 import { ProductContext } from "../../context/productContext"
 import { UserContext } from "../../context/userContext"
 import { OrderContext } from "../../context/orderContext"
 import "./headerStyle.css"
-
-// import { UserContext } from "../../context/userContext"
-
 
 function Header() {
   const { productsInCart, showCart, setShowCart } = useContext(ProductContext)
   const { loggedIn, showAccount, setShowAccount } = useContext(UserContext)
   const { showOrders, setShowOrders } = useContext(OrderContext)
   
-
     let totalQty = 0;
-  
     productsInCart.map((item) => {
       totalQty = totalQty + item.qty
     })
   
-
   function renderOrders() {
     if(!showOrders){
       setShowOrders(true)
@@ -30,6 +22,7 @@ function Header() {
       setShowOrders(false)
     }
   }
+  
   function renderAccount() {
     if(!showAccount){
       setShowAccount(true)

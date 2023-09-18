@@ -1,10 +1,6 @@
 import { useContext } from "react"
-// import { UserContext } from "../../context/userContext";
 import { OrderContext } from "../../context/orderContext";
-
-
 import "./OrdersStyle.css"
-
 
 function Orders() {
     const { orderList } = useContext(OrderContext)
@@ -23,7 +19,7 @@ return (
                 </ul>
             ))}
             </div>
-    ))}
+        ))}
 
     </div>
   )
