@@ -13,7 +13,7 @@ function Account() {
     setPassword, userList, saveUser, loginUser, 
     loggedIn, setLoggedIn, logout, showAccount,
     setShowAccount, showCreateUserOptions, 
-    setShowCreateUserOptions   } = useContext(UserContext)
+    setShowCreateUserOptions   } = useContext(UserContext) // TODO Går att skapa två konton med samma mail
 
   // async function login() {
   //   if(document.querySelector(".userEmail").value){
@@ -61,7 +61,7 @@ return (
       {!loggedIn && !showCreateUserOptions ? <div><Login /><button onClick={() => setShowCreateUserOptions(true)}>Skapa konto</button></div> : "" }
       {loggedIn ? <button onClick={() => logout()}>Logga ut</button>: "" }
 
-      {showCreateUserOptions ? <CreateAccount /> : "" }
+      {showCreateUserOptions ? <CreateAccount /> : "" } 
       </div>
       {/* <h4>Logga in:</h4>
       {showCreateUserOptions ? <div>

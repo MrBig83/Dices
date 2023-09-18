@@ -63,6 +63,7 @@ export function UserProvider({ children }) {
   };
   
   const saveUser = async (username, userEmail, password) => {
+    console.log(userList.indexOf(userEmail));
     if(userList.length > 0) {
       const existingUserIndex = userList.indexOf(userEmail)
       if(existingUserIndex !== -1){
@@ -85,6 +86,7 @@ export function UserProvider({ children }) {
         "Content-type": "application/json; charset=UTF-8"
       }
     })
+    setShowCreateUserOptions(false)
   }
   // saveUser() KÖRS när man klickar på skapa användare. Exportera funktionen till en egen popup-ruta. 
   // TODO "Skapa användare" skall öppna popuppen. 

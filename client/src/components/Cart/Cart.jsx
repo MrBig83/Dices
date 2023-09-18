@@ -37,12 +37,10 @@ console.log(cartItemsObj);
 
 return (
     <div className="cartWindow">
-    
-    
     <div className="cartWindowHeader">
-    <h3>Din kundvagn, {localStorage.getItem("LoggedInUser")}:</h3>
-    <button className="closeWindow" onClick={() => setShowCart(false)}>X</button>
-  </div>
+      <h3>Din kundvagn, {localStorage.getItem("LoggedInUser")}</h3>
+      <p className="closeWindow" onClick={() => setShowCart(false)}>X</p>
+    </div>
 
 
         

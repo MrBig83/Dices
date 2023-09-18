@@ -7,17 +7,10 @@
     "description": "User created at webpage"
   },
   {
-    "id": "cus_OdBvX79vXJ5A3r",
-    "name": "webUser",
-    "email": "kalle@email.com",
-    "password": "$2b$10$TKc80hZRyQxAyGNfxdTw8OYDiD3bJf3AUAoSBwSvSrR5s3ijzm2CS",
-    "description": "User created at webpage"
-  },
-  {
-    "id": "cus_OecJweqn5QtFgE",
-    "name": "Användarnamn",
-    "email": "email@email.com",
-    "password": "$2b$10$lcRKq5/wAqYZR7mW20KO2u0Ojo4cFaczSnXVrVWXs6nrrGg3zWvT.",
+    "id": "cus_OezSdUZNR0HY4l",
+    "name": "test",
+    "email": "test@e.com",
+    "password": "$2b$10$kn0BC9gUDiVkmkONYNvhx.ya229zDr78ylh781usqLZer8rPhl2My",
     "description": "User created at webpage"
   }
 ]
