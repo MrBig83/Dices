@@ -8,13 +8,15 @@ const defaultValues = {
     showAccount: false,
     showCreateUserOptions: false, 
     username: "", 
+    warning: "",
     setuserEmail: () => {},
     setPassword: () => {}, 
     setUserList: () => {}, 
     setLoggedIn: () => {},
     setShowAccount: () => {},
     setShowCreateUserOptions: () => {}, 
-    setUsername: () => {}
+    setUsername: () => {}, 
+    setWarning: () => {}
 }
 
 export const UserContext = createContext(defaultValues);
@@ -29,6 +31,7 @@ export function UserProvider({ children }) {
   const [showAccount, setShowAccount] = useState(false)
   const [showCreateUserOptions, setShowCreateUserOptions] = useState(false)
   const [username, setUsername] = useState("")
+  const [warning, setWarning] = useState("")
   
   // eslint-disable-next-line react-refresh/only-export-components
   const loginUser = async (userEmail, password) => {
@@ -43,16 +46,10 @@ export function UserProvider({ children }) {
       }
     })
     const user = await loginResponse.json()
-      console.log(loginResponse);
       if(!loginResponse.ok){
-        console.log("Inloggningen misslyckades");
-        console.log("TODO - Visa felmeddelande");
+        setWarning("Inloggningen misslyckades")
       }
       setShowAccount(false)
-  
-    console.log(user); // TODO Ta bort denna loggen
-    console.log(user.email); // TODO Ta bort denna loggen
-
 
       setuserEmail(user.email)
       setLoggedIn(user.id); 
@@ -63,33 +60,39 @@ export function UserProvider({ children }) {
   };
   
   const saveUser = async (username, userEmail, password) => {
-    console.log(userList.indexOf(userEmail));
-    if(userList.length > 0) {
-      const existingUserIndex = userList.indexOf(userEmail)
-      if(existingUserIndex !== -1){
-        // setWarning("Användaren finns redan") // TODO : Skapa funktionen
-        console.log("Användaren finns redan");
-        return
+    if(username && userEmail && password !== ""){
+      if(userList.length > 0) {
+        const existingUserIndex = userList.indexOf(userEmail)
+        if(existingUserIndex == -1){
+          await fetch(`http://localhost:3000/api/save`, {
+            method: "POST", 
+            body: JSON.stringify({
+              name: username, 
+              userEmail: userEmail, 
+              userPassword: password, 
+              description: "User created at webpage"
+            }), 
+            headers: {
+              "Content-type": "application/json; charset=UTF-8"
+            }
+          })   
+        } else {
+          setWarning("Epostadressen finns redan registrerad") 
+          return
+        }
       }
-    }
-
-    await fetch(`http://localhost:3000/api/save`, {
-      method: "POST", 
-      body: JSON.stringify({
-        //name: "webUser", //TODO ha med namn vid skapande av användare
-        name: username, // TODO Skapa endpoint med användarnamn
-        userEmail: userEmail, 
-        userPassword: password, 
-        description: "User created at webpage"
-      }), 
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
-    })
-    setShowCreateUserOptions(false)
+      setShowCreateUserOptions(false)
+  } else {
+    setWarning("Fyll i samtliga fält")
   }
-  // saveUser() KÖRS när man klickar på skapa användare. Exportera funktionen till en egen popup-ruta. 
-  // TODO "Skapa användare" skall öppna popuppen. 
+  }
+
+
+  useEffect(() => {
+    setTimeout(() => {
+      setWarning("");
+    }, 2000);
+  }, [warning])
  
   useEffect(() => {
     const fetchuserEmails = async () => {
@@ -116,8 +119,6 @@ export function UserProvider({ children }) {
     localStorage.removeItem("DiceCart")
     localStorage
     setLoggedIn("") 
-    // setuserEmail("")
-    // setPassword("")
   };
 
     return (
@@ -139,7 +140,9 @@ export function UserProvider({ children }) {
                 showCreateUserOptions, 
                 setShowCreateUserOptions,
                 username, 
-                setUsername               
+                setUsername, 
+                warning, 
+                setWarning               
             }}
             >
             {children}

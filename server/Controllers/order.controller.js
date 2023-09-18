@@ -16,10 +16,8 @@ const getUserOrders = async (req, res) => {
         userOrders.push(order)
       };
     })
-    console.log(userOrders);
     res.status(200).json(userOrders); //Logga svaret härt
   })
-  
   };
 
 const verifySession = async (req, res) => {
@@ -59,20 +57,11 @@ const verifySession = async (req, res) => {
           res.status(200).json("New order added")
       })
     });
-
     res.status(200).json( {verified: true} )
-
   } catch (error) {
     console.error(error)
   }
-
-
-
-
-
 }
-
-
   module.exports = {
     getAllOrders,
     getUserOrders,

@@ -12,7 +12,7 @@ import "./headerStyle.css"
 
 function Header() {
   const { productsInCart, showCart, setShowCart } = useContext(ProductContext)
-  const { loggedIn, logout, showAccount, setShowAccount } = useContext(UserContext)
+  const { loggedIn, showAccount, setShowAccount } = useContext(UserContext)
   const { showOrders, setShowOrders } = useContext(OrderContext)
   
 

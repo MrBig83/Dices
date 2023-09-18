@@ -1,6 +1,7 @@
 .mainContent {
     display: flex;
     justify-content: center;
+    padding-top: 20px;
 
 }
 .mainContent h3 {
@@ -9,9 +10,7 @@
     justify-content: center;
 }
 .productList {
-    margin-top: 10vh;
-    /* left: 250px; */
-    /* width: 800px; */
+    margin-top: 8vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -54,4 +53,7 @@
 }
 .productCard .diabledButton{
     background-color: rgba(238, 158, 144, 0.4);
+}
+.productCard .diabledButton:hover{
+    background-color: rgba(223, 79, 54, 0.4);
 }

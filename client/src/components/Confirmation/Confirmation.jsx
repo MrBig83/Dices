@@ -8,7 +8,6 @@ function Confirmation() {
   
   useEffect(()=> {
     const sessionId = localStorage.getItem("SessionId")
-    console.log(sessionId);
     const verifyPayment = async () => {
       
       const response = await fetch (`http://localhost:3000/api/verify-session`, {

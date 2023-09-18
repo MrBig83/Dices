@@ -247,5 +247,34 @@
       }
     ],
     "orderTotal": 1043
+  },
+  {
+    "created": 1695062903,
+    "customerName": "Malin",
+    "customerEmail": "malin@email.com",
+    "products": [
+      {
+        "product": "Metal Silver Series: Purple",
+        "quantity": 1,
+        "price": 449,
+        "totalPrice": 449,
+        "currency": "sek"
+      },
+      {
+        "product": "Gemini Blue-Purple with gold (set of 7 dice)",
+        "quantity": 1,
+        "price": 145,
+        "totalPrice": 145,
+        "currency": "sek"
+      },
+      {
+        "product": "Metal Gold Series: Purple Glitter",
+        "quantity": 2,
+        "price": 449,
+        "totalPrice": 898,
+        "currency": "sek"
+      }
+    ],
+    "orderTotal": 1119
   }
 ]

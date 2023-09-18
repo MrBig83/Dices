@@ -27,7 +27,7 @@
 }
 .header-right button:hover {
     transition: 0.6s;
-    box-shadow: 0px 0px 10px rgb(217, 255, 0);
+    box-shadow: 0px 0px 10px rgb(82, 177, 209);
 }
 .qty {
     top: -10px;

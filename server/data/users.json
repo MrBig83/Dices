@@ -5,12 +5,5 @@
     "email": "a@e.com",
     "password": "$2b$10$EnilwT6LKXdwD6IrIFDSBuvEBU9NAj1Xh05s/XNlmzhRvBMlzYzNy",
     "description": "User created at webpage"
-  },
-  {
-    "id": "cus_OezSdUZNR0HY4l",
-    "name": "test",
-    "email": "test@e.com",
-    "password": "$2b$10$kn0BC9gUDiVkmkONYNvhx.ya229zDr78ylh781usqLZer8rPhl2My",
-    "description": "User created at webpage"
   }
 ]

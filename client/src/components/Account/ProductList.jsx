@@ -1,7 +1,7 @@
 import { ProductContext } from "../../context/productContext"
 import { useContext, useEffect } from 'react';
-import { UserContext } from "../../context/userContext";
 import "./ProductListStyle.css"
+import { UserContext } from "../../context/userContext";
 
 function ProductList() {
   
@@ -10,7 +10,7 @@ const { loggedIn } = useContext(UserContext)
 
 useEffect(()=> {
   localStorage.setItem("DiceCart", JSON.stringify(productsInCart))
-}, [productsInCart])
+}, [productsInCart]) // TODO : Detta block ställer till det så att LS töms vid refresh
 
 const addToCart = (product) => {
   const cartObj = {
@@ -28,6 +28,7 @@ const addToCart = (product) => {
           const updatedCart = [...productsInCart];
           updatedCart[existingCartItemIndex].qty += 1;
           setProductsInCart(updatedCart)
+          
         } else {
           setProductsInCart([...productsInCart, cartObj])   
         }
@@ -35,6 +36,8 @@ const addToCart = (product) => {
         setProductsInCart([...productsInCart, cartObj])    
       }
     }
+    
+
 
 return (
   <div className="mainContent">
@@ -47,7 +50,6 @@ return (
         <div className="cardInfo">
           <p>{product.name}</p>
           <p>{product.default_price.unit_amount /100} {product.default_price.currency}</p>
-          {/* <button onClick={() => addToCart(product.default_price.id)}>Lägg till i kundvagn</button> */}
           {loggedIn ? <button onClick={() => addToCart(product.default_price.id)}>Lägg till i kundvagn</button> : 
           <button className="diabledButton">Logga in för att handla</button>}
         </div>

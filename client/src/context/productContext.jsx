@@ -18,12 +18,16 @@ export const ProductContext = createContext(defaultValues);
 // eslint-disable-next-line react/prop-types
 export const ProductProvider = ({ children }) => {
   
+  // let buffer = JSON.parse(localStorage.getItem("DiceCart"))
+  const [productsInCart, setProductsInCart] = useState([]) 
   const [productList, setProductList] = useState([]);
-  const [productsInCart, setProductsInCart] = useState([]) //Kan man ha localstorage i sin useState kanske? TODO : Prova detta. 
   const [showCart, setShowCart] = useState(false)
   
   const { loggedIn } = useContext(UserContext)
   
+  
+  
+
   const performCheckout = async (productsInCart) => {
     const requestBody = {
       loggedinUser: loggedIn, 

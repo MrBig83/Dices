@@ -1,30 +1,31 @@
 .cartWindow {
-    z-index: 10;
+    z-index: 10;    
     position: absolute;
     left: calc(50vw - 200px);
     top: calc(50vh - 300px);
     width: 450px;
     backdrop-filter: blur(10px);
+    min-height: 250px;
     border: 1px solid black;
-    min-height: 200px;
     border-radius: 20px;
     background-color: rgba(211, 211, 211, 0.85);
-    padding: 0.5rem;
+    padding: 0px;
+    
     
 }
 .cartWindowHeader {
-    height: 50px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     background-color: rgba(250, 250, 250, 0.5);
     height: 30px;
+    margin-bottom: 20px;
 }
 h3 {
     margin-left: 50px;
 }
-.closeWindow {
+/* .closeWindow {
     position: relative;
     top: -3px;
     height: 30px;
@@ -32,18 +33,20 @@ h3 {
     border: 0px;
     background-color: rgba(255, 0, 0, 0.514);
     border-top-right-radius: 20px;
-}
+} */
 .cartListItem {
-    margin-bottom: 1rem;
-    border-top: 1px solid black;
+    padding: 0px 10px;
+    margin: 0px 10px 0px 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.473);
 }
 
-.cartWindow img {
+.cartListItem img {
     margin-top: 10px;
     max-width: 50px;
 }
 .sum {
     border-top: 1px solid black;
+    margin: 20px 20px 20px 20px;
     padding-top: 20px;
     display: flex;
     justify-content: flex-end;
@@ -54,6 +57,7 @@ h3 {
     background-color: rgb(173, 216, 230);
     /* box-shadow: 0px 0px 10px rgb(217, 255, 0); */
     /* On hover på ovan box-shadow */
+    margin-bottom: 10px;
     margin-left: 10px ;
     height: 2rem;
     width: 6rem;
@@ -61,5 +65,20 @@ h3 {
 }
 .cartWindow button:hover {
     transition: 0.6s;
-    box-shadow: 0px 0px 10px rgb(217, 255, 0);
+    box-shadow: 0px 0px 10px rgb(82, 177, 209);
+}
+#dangerButton {
+    border: 1px solid rgb(224, 129, 129);
+    background-color: rgb(230, 173, 173);
+    /* box-shadow: 0px 0px 10px rgb(217, 255, 0); */
+    /* On hover på ovan box-shadow */
+    margin-bottom: 10px;
+    margin-left: 10px ;
+    height: 2rem;
+    width: 6rem;
+    border-radius: 10px;
+}
+#dangerButton:hover {
+    transition: 0.6s;
+    box-shadow: 0px 0px 10px rgb(255, 102, 0);
 }
