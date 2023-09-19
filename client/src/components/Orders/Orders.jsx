@@ -3,11 +3,14 @@ import { OrderContext } from "../../context/orderContext";
 import "./OrdersStyle.css"
 
 function Orders() {
-    const { orderList } = useContext(OrderContext)
+    const { orderList, setShowOrders } = useContext(OrderContext)
 
 return (
-    <div className="ordersWindow">
-        <h3 className="header">Dina tidigare ordrar, {localStorage.getItem("LoggedInUser")}:</h3>
+    <div className="popupWindow">
+    <div className="popupWindowHeader">
+        <h3>Dina tidigare ordrar, {localStorage.getItem("LoggedInUser")}:</h3>
+        <p className="closeWindow" onClick={() => setShowOrders(false)}>X</p>
+        </div>
         {orderList.map((order) => (
             <div key={order.created} className="orderListItem">
             <p>Datum: {new Date(order.created * 1000).toLocaleDateString("sv-SE")}</p>
