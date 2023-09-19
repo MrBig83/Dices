@@ -26,7 +26,7 @@ function Login() {
   }
   
 return (
-    <div >
+    <div className="loginPopup">
       <p>Logga in:</p>
       <div id="warningText"><p>{warning}</p></div>
       

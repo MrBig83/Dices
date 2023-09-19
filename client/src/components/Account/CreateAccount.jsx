@@ -11,7 +11,7 @@ function CreateAccount() {
   } = useContext(UserContext)
 
 return (
-  <div>
+  <div className="createAccountPopup">
       <p>Skapa konto: </p>
       <div id="warningText"><p>{warning}</p></div>
       <div className="popupWindowContent">

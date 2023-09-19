@@ -6,9 +6,21 @@
     justify-content: space-around;
     
 }
+.header-left {
+    width: 120px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;   
+    color: black;
+    text-decoration: none;
+}
+a {
+    text-decoration: none;
+}
+
 .header-right {
     height: inherit;
-    
     width: 40%;
     display: flex;
     align-items: center;
@@ -43,4 +55,8 @@
     /* top: -17px; */
     right: 3px;
     
+}
+#logoImg {
+    max-width: 50px;
+    mix-blend-mode:multiply;
 }

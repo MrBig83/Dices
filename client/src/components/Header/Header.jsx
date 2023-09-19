@@ -41,7 +41,11 @@ function Header() {
 
   return (
     <div className="header">
-        <NavLink to="/"><img alt="Logo" /></NavLink>
+    <NavLink to="/">
+        <div className="header-left">
+          <img id="logoImg" src="../../src/assets/d20_dice.jpg" alt="logo" /><h2>Dices</h2>
+        </div>
+        </NavLink>
         <div className="header-right">
 
           {loggedIn ? <p>Välkommen: {localStorage.getItem("LoggedInUser")}</p> : ""}
