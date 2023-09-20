@@ -26,6 +26,7 @@ När installationen är klar kör kommandot `npm run dev` för att starta front 
 - Logga in med dina nya kontouppgifter (email och lösenord)
 - Välj och vraka bland alla våra 3 produkter
 - I checkout - använd rabattkoden SUNRISE för 25% rabatt
+- Klicka på "Mina ordrar" i headern för att se dina tidigare ordrar
 
 ### 3. Dependencies
 ##### Backend:
