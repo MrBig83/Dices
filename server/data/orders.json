@@ -42,5 +42,35 @@
       }
     ],
     "orderTotal": 1043
+  },
+  {
+    "created": 1695189969,
+    "customerName": "webUser",
+    "customerEmail": "a@e.com",
+    "products": [
+      {
+        "product": "Metal Silver Series: Purple",
+        "quantity": 2,
+        "price": 449,
+        "totalPrice": 898,
+        "currency": "sek"
+      }
+    ],
+    "orderTotal": 673.5
+  },
+  {
+    "created": 1695190080,
+    "customerName": "Kalle",
+    "customerEmail": "kalle@email.com",
+    "products": [
+      {
+        "product": "Metal Gold Series: Purple Glitter",
+        "quantity": 2,
+        "price": 449,
+        "totalPrice": 898,
+        "currency": "sek"
+      }
+    ],
+    "orderTotal": 898
   }
 ]
