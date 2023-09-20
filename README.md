@@ -7,15 +7,15 @@
 ### 1. Instruktioner
 Klona eller forka repot. 
 
-Kopiera .env-filen som skickats separat. Klistra in .env-filen i ** <där du lagt projektet>/dices/server **
+Kopiera .env-filen som skickats separat. Klistra in .env-filen i **<där du lagt projektet>/dices/server**
 
 Öppna valfri terminal och navigera till: 
-** <där du lagt projektet>/dices/server **
+**<där du lagt projektet>/dices/server**
 Väl där kör du kommandot `npm install` för att installera alla dependencies. (Specade längre ner i denna fil) 
 När installationen är klar kör kommandot `npm run dev` för att starta webservern.
 
 Öppna sedan en andra terminal och navigera till 
-** <där du lagt projektet>/dices/client **
+**<där du lagt projektet>/dices/client**
 Väl där kör du kommandot `npm install` för att installera alla dependencies. (Specade längre ner i denna fil) 
 När installationen är klar kör kommandot `npm run dev` för att starta front end klienten. Klicka på länken som visas i din terminal. 
 
