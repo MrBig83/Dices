@@ -26,6 +26,7 @@ const getAllProducts = async (req, res) => {
           success_url: `${CLIENT_URL}/confirmation`, 
           cancel_url: `${CLIENT_URL}`
       });
+      console.log(session);
       res.status(200).json({url: session.url, sessionId: session.id})
     } catch (error) {
         console.log(error.message);

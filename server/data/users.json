@@ -12,5 +12,19 @@
     "email": "kalle@email.com",
     "password": "$2b$10$RrStdS7jCmeISbYFZIJQSu0VfKf8fsdBKkevET.AWoE34kuCIiCL2",
     "description": "User created at webpage"
+  },
+  {
+    "id": "cus_PB1NqfNVF1lw3D",
+    "name": "Kuling",
+    "email": "kuling@e.com",
+    "password": "$2b$10$5M4l4KRH7m6MicLVVT3z/uG3I61qoLiXgL23o4/18tceRlkptV9Ka",
+    "description": "User created at webpage"
+  },
+  {
+    "id": "cus_PLd4IEM6nO3n1Q",
+    "name": "Användare",
+    "email": "användare@email.com",
+    "password": "$2b$10$U44ollm4uCfL3EVxU1P2p.BkStos6fBqxhx5/GRRx/GTp3/AGD7le",
+    "description": "User created at webpage"
   }
 ]

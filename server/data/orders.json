@@ -72,5 +72,87 @@
       }
     ],
     "orderTotal": 898
+  },
+  {
+    "created": 1704870222,
+    "customerName": "Användare",
+    "customerEmail": "användare@email.com",
+    "products": [
+      {
+        "product": "Metal Silver Series: Purple",
+        "quantity": 1,
+        "price": 449,
+        "totalPrice": 449,
+        "currency": "sek"
+      },
+      {
+        "product": "Gemini Blue-Purple with gold (set of 7 dice)",
+        "quantity": 1,
+        "price": 145,
+        "totalPrice": 145,
+        "currency": "sek"
+      }
+    ],
+    "orderTotal": 594
+  },
+  {
+    "created": 1704891491,
+    "customerName": "webUser",
+    "customerEmail": "a@e.com",
+    "products": [
+      {
+        "product": "Metal Gold Series: Purple Glitter",
+        "quantity": 1,
+        "price": 449,
+        "totalPrice": 449,
+        "currency": "sek"
+      }
+    ],
+    "orderTotal": 449
+  },
+  {
+    "created": 1705589765,
+    "customerName": "webUser",
+    "customerEmail": "a@e.com",
+    "products": [
+      {
+        "product": "Gemini Blue-Purple with gold (set of 7 dice)",
+        "quantity": 1,
+        "price": 145,
+        "totalPrice": 145,
+        "currency": "sek"
+      }
+    ],
+    "orderTotal": 145
+  },
+  {
+    "created": 1705589886,
+    "customerName": "webUser",
+    "customerEmail": "a@e.com",
+    "products": [
+      {
+        "product": "Gemini Blue-Purple with gold (set of 7 dice)",
+        "quantity": 1,
+        "price": 145,
+        "totalPrice": 145,
+        "currency": "sek"
+      }
+    ],
+    "orderTotal": 145
+  },
+  {
+    "created": 1705592582,
+    "customerName": "webUser",
+    "customerEmail": "a@e.com",
+    "products": [
+      {
+        "product": "Metal Gold Series: Purple Glitter",
+        "quantity": 1,
+        "price": 449,
+        "totalPrice": 449,
+        "currency": "sek"
+      }
+    ],
+    "orderTotal": 449
   }
 ]
